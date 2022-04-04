@@ -20,7 +20,7 @@ let elements = {
     lon: null
   };
 
-  let locations = [{
+  let state = [{
     name: null,
     location: null,
     coords:[0,0]
@@ -52,10 +52,7 @@ let elements = {
     
         // set the values of the controls on the page to match state
         elements.text.value = state.text;
-        elements.range.value = state.range;
-        elements.switch.checked = state.switch;
-        elements.radio1.checked = state.radio === 'red';
-        elements.radio2.checked = state.radio === 'blue';
+       
       }
       console.log('success');
     } catch (e) {
@@ -73,11 +70,7 @@ let elements = {
     if (elements.marker) elements.map.removeLayer(elements.marker);
     if (elements.circle) elements.map.removeLayer(elements.circle);
   
-    elements.marker = L.marker(leafletCoords)
-    //   .addTo(elements.map)
-    //   .bindPopup(`You are within ${Number(coords.accuracy).toFixed(1)} meters from this point @ ${new Date(position.timestamp).toLocaleString()}`)
-    //   .openPopup();
-    // elements.circle = L.circle(leafletCoords, coords.accuracy).addTo(elements.map);
+    elements.marker = L.marker(leafletCoords);
   };
   
   const errors = {
@@ -100,14 +93,7 @@ let elements = {
     }
   };
   
-  const listen = () => {
-    if (!navigator.geolocation) {
-      console.log('Geolocation is not supported by your browser!');
-    } else {
-      elements.shouldListen = true;
-      elements.listenTimerID = navigator.geolocation.watchPosition(onLocateSuccess, onLocateFailure);
-    }
-  };
+  
   
   const clearMarker = () => {
    
@@ -147,7 +133,7 @@ let elements = {
     map.on('click', onMapClick);
     let markers = [];
 
-   locations.forEach((element, i) => 
+   state.forEach((element, i) => 
    markers[i] = L.marker([element.coords[0],element.coords[1]]).addTo(map)
    .bindPopup("<strong>"+element.name+"</strong>"));
   
