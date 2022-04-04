@@ -155,7 +155,7 @@ let elements = {
       elements = {
         navigator: document.querySelector('#navigator'),
         
-        locationName: document.getElementById('username').value,
+        locationName: document.getElementById('locationName').value,
         mapDiv: document.querySelector('#map'),
         map: initMap(),
         locateBtn: document.querySelector('#locateBtn'),
