@@ -109,25 +109,15 @@ let elements = {
     }
   };
   
-  const listenInterval = () => {
-    if (!navigator.geolocation) {
-      console.log('Geolocation is not supported by your browser');
-    } else {
-      elements.shouldListen = true;
-      elements.listenTimerID = setInterval(locate, 750);
-    }
+  const clearMarker = () => {
+   
   };
   
-  const stopListening = (keepListening) => {
-    if (!navigator.geolocation) {
-      console.log('Geolocation is not supported by your browser!');
-    } else if (elements.listenTimerID) {
-      navigator.geolocation.clearWatch(elements.listenTimerID);
-      clearInterval(elements.listenTimerID);
-      elements.listenTimerID = null;
-      elements.shouldListen = keepListening;
-    }
+  const clearAll = () => {
+
   };
+
+
   
   const initMap = () => {
     const map = L.map('map').setView({ lon: 0, lat: 0 }, 2);
@@ -187,9 +177,11 @@ let elements = {
       };
   
       elements.locateBtn.addEventListener('click', locate);
-      elements.listenBtn.addEventListener('click', listen);
-      elements.listenIntervalBtn.addEventListener('click', listenInterval);
-      elements.stopBtn.addEventListener('click', () => stopListening(false));
+      elements.saveMarker.addEventListener('click', saveState);
+      elements.clearMarker.addEventListener('click', clearMarker);
+      elements.clearAll.addEventListener('click', clearAll);
+      elements.loadMarkers.addEventListener('click', loadState);
+      
     }
   };
   
