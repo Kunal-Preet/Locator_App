@@ -51,7 +51,7 @@ let elements = {
         delete state.id;
     
         // set the values of the controls on the page to match state
-        elements.text.value = state.text;
+        elements.locationName.value = state.name;
        
       }
       console.log('success');
