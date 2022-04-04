@@ -36,3 +36,25 @@ p {
 img {
     width: 150px;
 }
+
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+}
+
+#map {
+    height: 720px;
+    width: 1280px;
+    max-width: 95vw;
+    max-height: 50vh;
+    border-radius: 6px;
+}
+
+#locateBtn,
+#listenBtn,
+#listenIntervalBtn,
+#stopBtn {
+    margin-top: 10px;
+}
