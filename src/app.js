@@ -25,11 +25,11 @@ let elements = {
     if (elements.marker) elements.map.removeLayer(elements.marker);
     if (elements.circle) elements.map.removeLayer(elements.circle);
   
-    elements.marker = L.marker(leafletCoords)
-      .addTo(elements.map)
-      .bindPopup(`You are within ${Number(coords.accuracy).toFixed(1)} meters from this point @ ${new Date(position.timestamp).toLocaleString()}`)
-      .openPopup();
-    elements.circle = L.circle(leafletCoords, coords.accuracy).addTo(elements.map);
+    // elements.marker = L.marker(leafletCoords)
+    //   .addTo(elements.map)
+    //   .bindPopup(`You are within ${Number(coords.accuracy).toFixed(1)} meters from this point @ ${new Date(position.timestamp).toLocaleString()}`)
+    //   .openPopup();
+    // elements.circle = L.circle(leafletCoords, coords.accuracy).addTo(elements.map);
   };
   
   const errors = {
