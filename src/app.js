@@ -92,6 +92,16 @@ let elements = {
     L.control.scale({ imperial: false, metric: true }).addTo(map);
   
     L.marker({ lon: 0, lat: 0 }).bindPopup('The center of the world').addTo(map);
+    var popup = L.popup();
+
+    function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+        }
+
+    map.on('click', onMapClick);
   
     return map;
   };
@@ -123,16 +133,7 @@ let elements = {
       if (!elements.listenTimerID && elements.shouldListen) listenInterval();
     }
   }
-  var popup = L.popup();
-
-    function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-        }
-
-map.on('click', onMapClick);
+  
   
   document.addEventListener('init', setUpPage);
   document.addEventListener('visibilitychange', handleVisibilityChange);
