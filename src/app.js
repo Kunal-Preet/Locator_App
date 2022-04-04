@@ -155,14 +155,15 @@ let elements = {
     }
 
     map.on('click', onMapClick);
+    let markers = [];
+
+   locations.forEach((element, i) => 
+   markers[i] = L.marker([element.coords[0],element.coords[1]]).addTo(map)
+   .bindPopup("<strong>"+element.name+"</strong>"));
   
     return map;
   };
-  let markers = [];
-
-   locations.forEach((element, i) => 
-   markers[i] = L.marker([element.coords[0],element.coords[1]]).addTo(mymap)
-   .bindPopup("<strong>"+element.name+"</strong>"));
+  
 
 
   const setUpPage = (evt) => {
