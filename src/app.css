@@ -53,8 +53,9 @@ img {
 }
 
 #locateBtn,
-#listenBtn,
-#listenIntervalBtn,
-#stopBtn {
+#saveMarker,
+#clearMarker,
+#clearAll,
+#loadMarkers {
     margin-top: 10px;
 }

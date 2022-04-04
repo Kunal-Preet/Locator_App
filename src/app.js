@@ -9,12 +9,22 @@ let elements = {
     locationName: null,
     marker: null,
     circle: null,
+    saveMarker: null,
+    clearMarker: null,
+    clearAll: null,
+    loadMarkers: null,
   
     listenTimerID: null,
     shouldListen: false,
     lat: null,
     lon: null
   };
+
+  let locations = [{
+    name: null,
+    location: null,
+    coords:[0,0]
+},]
   
 
   const saveState = async () => {
@@ -133,9 +143,10 @@ let elements = {
     var popup = L.popup();
 
     function onMapClick(e) {
-    popup
+        
+        popup
         .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString() + elements.locationName)
+        .setContent(elements.locationName)
         .openOn(map)
         .addTo(map);
         console.log(elements.locationName)
@@ -147,7 +158,13 @@ let elements = {
   
     return map;
   };
-  
+  let markers = [];
+
+   locations.forEach((element, i) => 
+   markers[i] = L.marker([element.coords[0],element.coords[1]]).addTo(mymap)
+   .bindPopup("<strong>"+element.name+"</strong>"));
+
+
   const setUpPage = (evt) => {
     console.log('start init', evt.target.id);
     database = new Dexie("MyDatabase");
@@ -161,9 +178,11 @@ let elements = {
         mapDiv: document.querySelector('#map'),
         map: initMap(),
         locateBtn: document.querySelector('#locateBtn'),
-        listenBtn: document.querySelector('#listenBtn'),
-        listenIntervalBtn: document.querySelector('#listenIntervalBtn'),
-        stopBtn: document.querySelector('#stopBtn'),
+        saveMarker: document.querySelector('#saveMarker'),
+        clearMarker: document.querySelector('#clearMarker'),
+        clearAll: document.querySelector('#clearAll'),
+        loadMarkers: document.querySelector('#loadMarkers'),
+
       };
   
       elements.locateBtn.addEventListener('click', locate);
