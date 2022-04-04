@@ -138,6 +138,7 @@ let elements = {
         .setContent("You clicked the map at " + e.latlng.toString() + elements.locationName)
         .openOn(map)
         .addTo(map);
+        console.log(elements.locationName)
         //elements.marker.bindPopup(elements.locationName).openPopup(); 
         
     }
