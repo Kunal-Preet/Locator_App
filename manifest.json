@@ -1,7 +1,7 @@
 {
-  "name": "my-new-pwa",
-  "short_name": "my-new-pwa",
-  "start_url": "https://evanburg.github.io/pwa-boilerplate/",
+  "name": "Kunal-Preet-Locator",
+  "short_name": "Locator",
+  "start_url": "https://kunal-preet.github.io/Locator_App/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
