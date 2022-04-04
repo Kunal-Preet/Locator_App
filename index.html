@@ -28,7 +28,10 @@
         </ons-toolbar>
         <div class="map-container">
           <div id="map"></div>
-          <ons-fab position="bottom right" id="locateBtn">My Location</ons-fab>
+          <ons-fab position="bottom right" id="locateBtn">ME</ons-fab>
+          <p>
+            <ons-input id="locationName" modifier="underbar" placeholder="Location Name" float></ons-input>
+          </p>
           <ons-button id="listenBtn">Lisen for location changes!</ons-button>
           <ons-button id="listenIntervalBtn">Lisen for location changes via setInterval!</ons-button>
           <ons-button id="stopBtn">Stop listen for location changes!</ons-button>
@@ -40,6 +43,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
+  <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
 <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 <script src="src/app.js"></script>
 <script type="text/javascript">

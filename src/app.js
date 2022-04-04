@@ -6,14 +6,52 @@ let elements = {
     listenBtn: null,
     listenIntervalBtn: null,
     stopBtn: null,
-  
+    locationName: null,
     marker: null,
     circle: null,
   
     listenTimerID: null,
     shouldListen: false,
+    lat: null,
+    lon: null
   };
   
+
+  const saveState = async () => {
+    console.log('saving state:', state);
+  
+    try {
+      await database.states.add({ ...state, date: new Date().getTime() })
+    } catch (e) {
+      return console.log('error', e);
+    }
+    
+    console.log('success');
+  }
+
+  const loadState = async () => {
+    console.log('loading state');
+  
+    try {
+      const newState = (await database.states.orderBy("date").reverse().toArray())[0];
+      console.log(newState);
+      if (newState && Object.keys(newState).length !== 0) {
+        state = { ...newState };
+        delete state.date;
+        delete state.id;
+    
+        // set the values of the controls on the page to match state
+        elements.text.value = state.text;
+        elements.range.value = state.range;
+        elements.switch.checked = state.switch;
+        elements.radio1.checked = state.radio === 'red';
+        elements.radio2.checked = state.radio === 'blue';
+      }
+      console.log('success');
+    } catch (e) {
+      console.log('error loading state', e);
+    }
+  }
   const onLocateSuccess = (position) => {
     // const coords = position.coords;
     const { coords } = position;
@@ -25,7 +63,7 @@ let elements = {
     if (elements.marker) elements.map.removeLayer(elements.marker);
     if (elements.circle) elements.map.removeLayer(elements.circle);
   
-    // elements.marker = L.marker(leafletCoords)
+    elements.marker = L.marker(leafletCoords)
     //   .addTo(elements.map)
     //   .bindPopup(`You are within ${Number(coords.accuracy).toFixed(1)} meters from this point @ ${new Date(position.timestamp).toLocaleString()}`)
     //   .openPopup();
@@ -99,7 +137,9 @@ let elements = {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
-        }
+        elements.marker.bindPopup(elements.locationName).openPopup(); 
+        
+    }
 
     map.on('click', onMapClick);
   
@@ -108,9 +148,14 @@ let elements = {
   
   const setUpPage = (evt) => {
     console.log('start init', evt.target.id);
+    database = new Dexie("MyDatabase");
+    database.version(1).stores({ states: "++id, date" });
+
     if (evt.target.id === 'home') {
       elements = {
         navigator: document.querySelector('#navigator'),
+        
+        locationName: document.getElementById('username').value,
         mapDiv: document.querySelector('#map'),
         map: initMap(),
         locateBtn: document.querySelector('#locateBtn'),
