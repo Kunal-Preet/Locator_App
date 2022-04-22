@@ -1,5 +1,5 @@
 # weather app
 Made by-
-Kunal Preet
-Piyush Gupta
+Kunal Preet,
+Piyush Gupta &
 Shubham
