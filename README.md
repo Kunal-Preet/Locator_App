@@ -1,2 +1,5 @@
-# pwa-boilerplate
-Basic vanilla PWA boilerplate repository
+# weather app
+Made by-
+Kunal Preet
+Piyush Gupta
+Shubham
